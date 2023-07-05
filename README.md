@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+# Ecommerce sports
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Atomic Design
+
+This project has five levels of atomic design:
+
+* Atoms
+* Molecules
+* Organisms
+* Templates
+* Pages
 
 ## Available Scripts
 
