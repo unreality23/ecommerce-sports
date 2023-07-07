@@ -7,6 +7,10 @@ import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage";
 
 //Layout
 import Layout from "./components/templates/Layout/Layout";
+import About from "./components/pages/ContentPages/About/About";
+import Faq from "./components/pages/ContentPages/Faq/Faq";
+import Terms from "./components/pages/ContentPages/Terms/Terms";
+import ContentLayout from "./components/templates/ContentLayout/ContentLayout";
 
 const App = () => {
     return (
@@ -16,6 +20,11 @@ const App = () => {
                     <Route index element={<Home />} />
                     <Route path="/products" element={<Products />}/>
                     <Route path="*" element={<NotFoundPage />} />
+                </Route>
+                <Route element={<ContentLayout />} >
+                    <Route path="/about" element={<About />} />
+                    <Route path="/faq" element={<Faq />}/>
+                    <Route path="/terms" element={<Terms />} />
                 </Route>
             </Routes>
         </>

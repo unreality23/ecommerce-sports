@@ -1,0 +1,33 @@
+/* bannerSlider.css */
+.banner-slider {
+    @apply relative w-full h-72 overflow-hidden;
+}
+
+.banner-slide {
+    @apply absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-300 ease-in-out;
+}
+
+.banner-slide.active {
+    @apply opacity-100;
+}
+
+.banner-slide img {
+    @apply w-full h-full object-cover;
+}
+
+.caption {
+    @apply absolute bottom-4 left-4 text-white text-lg;
+}
+
+.prev-button,
+.next-button {
+    @apply absolute top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-2 border-none cursor-pointer;
+}
+
+.prev-button {
+    @apply left-4;
+}
+
+.next-button {
+    @apply right-4;
+}
