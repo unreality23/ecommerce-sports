@@ -2,9 +2,9 @@ import React from 'react';
 import Navigation from "../Navigation/Navigation";
 const Header = () => {
     return (
-        <>
+        <header>
             <Navigation />
-        </>
+        </header>
     )
 }
 

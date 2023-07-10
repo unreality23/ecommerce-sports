@@ -1,5 +1,5 @@
+import 'tailwindcss/tailwind.css';
 import { Routes, Route } from 'react-router-dom';
-
 //Pages
 import Home from "./components/pages/Home/Home";
 import Products from "./components/pages/Products/Products";
@@ -11,7 +11,6 @@ import About from "./components/pages/ContentPages/About/About";
 import Faq from "./components/pages/ContentPages/Faq/Faq";
 import Terms from "./components/pages/ContentPages/Terms/Terms";
 import ContentLayout from "./components/templates/ContentLayout/ContentLayout";
-
 const App = () => {
     return (
         <>

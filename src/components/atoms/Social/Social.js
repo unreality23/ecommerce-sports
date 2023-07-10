@@ -12,15 +12,15 @@ const Social = () => {
         { iconType: 'instagram', link: 'www.twitter.com'},
     ]
     return (
-        <div>
+        <ul className="lg:flex lg:gap-x-2">
             {socials.map(({iconType, link}, index) => (
-                <li key={index}>
+                <li className="text-sm font-semibold leading-6 text-gray-900" key={index}>
                     <a href={link}>
                         <FontAwesomeIcon icon={['fab', iconType]}/>
                     </a>
                 </li>
             ))}
-        </div>
+        </ul>
     )
 }
 
