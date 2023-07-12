@@ -10,12 +10,12 @@ const Navigation = () => {
         {label: 'Products', link: '/products'},
     ]
     return (
-        <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 w-full">
 
             <Logo image="/logo/sports-low-resolution-logo-white-on-black-background.png"
                   title="Sports - Staying Healthy"
                   link="/"
-                  className="header-logo"/>
+                  classNameImg="h-36"/>
             <Menu menuItems={menuItems}/>
             <Social/>
 
