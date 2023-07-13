@@ -4,6 +4,7 @@ import Logo from "../../atoms/Logo/Logo";
 import Menu from "../../molecules/Menu/Menu";
 import "./Navigation.css";
 import 'tailwindcss/tailwind.css';
+
 const Navigation = () => {
     const menuItems = [
         {label: 'Home', link: '/'},
