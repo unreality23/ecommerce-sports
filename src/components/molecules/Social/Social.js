@@ -6,16 +6,16 @@ import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg
 
 library.add(faFacebook, faTwitter, faInstagram);
 
-const Social = () => {
+const Social = ({classNameProp}) => {
     const socials = [
-        { iconType: 'facebook', link: 'https://www.facebook.com'},
-        { iconType: 'twitter', link: 'https://www.instagram.com'},
-        { iconType: 'instagram', link: 'https://www.twitter.com'},
+        { iconType: 'facebook', link: 'https://www.facebook.com', color: 'hover:text-blue-600'},
+        { iconType: 'twitter', link: 'https://www.twitter.com', color: 'hover:text-blue-400'},
+        { iconType: 'instagram', link: 'https://www.instagram.com', color: 'hover:text-pink-500'},
     ]
     return (
-        <ul className="lg:flex lg:gap-x-2">
-            {socials.map(({iconType, link}, index) => (
-                <li className="text-lg leading-6 text-gray-900" key={index}>
+        <ul className={`lg:flex lg:gap-x-4 ${classNameProp}`}>
+            {socials.map(({iconType, link, color}, index) => (
+                <li className={`text-lg leading-6 hover:duration-200 ${color}`} key={index}>
                     <NavLink to={link}>
                         <FontAwesomeIcon icon={['fab', iconType]}/>
                     </NavLink>
