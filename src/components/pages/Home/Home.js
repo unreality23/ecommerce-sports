@@ -1,6 +1,9 @@
 import React from 'react';
 import Button from "../../atoms/Button/Button";
 import BannerSlider from "../../organisms/BannerSlider/BannerSlider";
+import CenteredContainer from "../../atoms/CenteredContainer/CenteredContainer";
+import SiteHeader from "../../molecules/SiteHeader/SiteHeader";
+import CategoryPage from "../CategoryPage/CategoryPage";
 const Home = () => {
     const slides = [
         {
@@ -24,10 +27,14 @@ const Home = () => {
     return (
         <div>
             {/* Your Home page content */}
-            <h1>Welcome to the Home Page!</h1>
             <BannerSlider slides={slides} />
-            <p>This is the content of the Home page.</p>
-            <Button text="Ok" buttonClassName="main-button text-9xl" onClick={handleClick} />
+            <CenteredContainer>
+                <h1>Socially and environmentally progressive outdoor footwear that helps you #BeOutside.</h1>
+            </CenteredContainer>
+            <SiteHeader disabledButton />
+            <CenteredContainer>
+                <CategoryPage />
+            </CenteredContainer>
         </div>
     );
 };
