@@ -3,16 +3,16 @@
 /* Additional component-specific styles */
 
 .button {
-    /* Tailwind CSS classes for button styling */
-    @apply px-4 py-2 bg-blue-500 text-white rounded-md;
+  /* Tailwind CSS classes for button styling */
+  @apply rounded-md bg-blue-500 px-4 py-2 text-white;
 }
 
 .button:hover {
-    /* Tailwind CSS classes for hover state */
-    @apply bg-blue-600;
+  /* Tailwind CSS classes for hover state */
+  @apply bg-blue-600;
 }
 
 .button:focus {
-    /* Tailwind CSS classes for focus state */
-    @apply ring-2 ring-blue-500;
+  /* Tailwind CSS classes for focus state */
+  @apply ring-2 ring-blue-500;
 }

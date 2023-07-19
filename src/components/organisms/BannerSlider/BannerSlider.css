@@ -1,33 +1,33 @@
 /* bannerSlider.css */
 .banner-slider {
-    @apply relative w-full h-72 overflow-hidden;
+  @apply relative h-72 w-full overflow-hidden;
 }
 
 .banner-slide {
-    @apply absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-300 ease-in-out;
+  @apply absolute left-0 top-0 h-full w-full opacity-0 transition-opacity duration-300 ease-in-out;
 }
 
 .banner-slide.active {
-    @apply opacity-100;
+  @apply opacity-100;
 }
 
 .banner-slide img {
-    @apply w-full h-full object-cover;
+  @apply h-full w-full object-cover;
 }
 
 .caption {
-    @apply absolute bottom-4 left-4 text-white text-lg;
+  @apply absolute bottom-4 left-4 text-lg text-white;
 }
 
 .prev-button,
 .next-button {
-    @apply absolute top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-2 border-none cursor-pointer;
+  @apply absolute top-1/2 -translate-y-1/2 transform cursor-pointer border-none bg-black px-4 py-2 text-white;
 }
 
 .prev-button {
-    @apply left-4;
+  @apply left-4;
 }
 
 .next-button {
-    @apply right-4;
+  @apply right-4;
 }

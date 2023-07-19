@@ -1,12 +1,40 @@
-import React from 'react';
-import Product from "../../organisms/Product/Product";
+import React, { Suspense, useState } from "react";
+import Button from "../../atoms/Button/Button";
+const LazyComponent = React.lazy(() =>
+  import("../../organisms/Product/Product"),
+);
+
+const Placeholder = () => {
+  return <div>Loading...</div>;
+};
 
 const CategoryPage = () => {
-    return (
-        <>
-            <Product imgAlt="alt image" labelText="label text" />
-        </>
-    )
-}
+  const [showLazyComponent, setShowLazyComponent] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowLazyComponent(true);
+  };
+
+  return (
+    <>
+      <Button onClick={handleButtonClick}>Load Lazy Component</Button>
+      <Suspense fallback={<Placeholder />}>
+        {showLazyComponent && (
+          <LazyComponent
+            imgSrc="/products/shoe-1.jpg"
+            imgAlt="alt image"
+            labelText="
+                dsfsdfsdfdsfs dsfsdfsdfdsfs dsfsdfsdfdsfsvdsfsdfsdfdsfs
+                dsfsdfsdfdsfs dsfsdfsdfdsfs dsfsdfsdfdsfsvdsfsdfsdfdsfs dsfsdfsdfdsfs
+                dsfsdfsdfdsfs dsfsdfsdfdsfsvdsfsdfsdfdsfs                 dsfsdfsdfdsfs dsfsdfsdfdsfs dsfsdfsdfdsfsvdsfsdfsdfdsfs
+                dsfsdfsdfdsfs dsfsdfsdfdsfs dsfsdfsdfdsfsvdsfsdfsdfdsfs dsfsdfsdfdsfs
+                dsfsdfsdfdsfs dsf
+                "
+          />
+        )}
+      </Suspense>
+    </>
+  );
+};
 
 export default CategoryPage;
