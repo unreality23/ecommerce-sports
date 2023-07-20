@@ -13,9 +13,9 @@ const Menu = ({ menuItems }) => {
     <>
       <div className="flex items-center">
         <button
-          className="border-0 bg-transparent px-2 text-xl leading-none transition-shadow duration-150 ease-in-out
-                        hover:text-pink-300  focus:text-pink-300 dark:hover:text-pink-300
-                        dark:focus:text-pink-300 lg:hidden"
+          className="hover:text-pink-300 border-0 bg-transparent px-2 text-xl leading-none transition-shadow duration-150
+                        ease-in-out  focus:text-timber-green dark:hover:text-timber-green
+                        dark:focus:text-timber-green desktop:hidden"
           type="button"
           onClick={toggleClass}
           data-te-collapse-init
@@ -40,21 +40,24 @@ const Menu = ({ menuItems }) => {
       <div
         className={`${
           !isActive && "hidden"
-        } !visible grow basis-[100%] items-center lg:!flex lg:basis-auto`}
+        } !visible grow basis-[100%] items-center desktop:!flex desktop:basis-auto`}
         id="navbarSupportedContentY"
         data-te-collapse-item
       >
-        <ul className="menu lg:flex lg:gap-x-12">
+        <ul className="menu desktop:flex desktop:gap-x-0">
           {menuItems.map(({ link, label }, index) => (
             <li
               key={index}
-              className="mb-4 lg:mb-0 lg:pr-2"
+              className="mb-4 desktop:mb-0 desktop:pr-2"
               data-te-nav-item-ref
             >
               <NavLink
-                className="block transition duration-150 ease-in-out hover:text-neutral-700
-                            focus:text-neutral-700 disabled:text-black/30 dark:hover:text-red-300
-                            dark:focus:text-white lg:p-2 [&.active]:text-black/90"
+                className="relative block transform-gpu ease-in-out before:absolute
+                            before:bottom-0 before:left-0 before:h-0.5 before:w-full before:origin-bottom-right
+                            before:scale-x-0 before:bg-timber-green before:transition-transform before:duration-150
+                            before:content-[''] hover:border-black hover:text-timber-green
+                            before:hover:origin-bottom-left before:hover:scale-x-100 focus:text-timber-green disabled:text-black
+                            dark:hover:text-timber-green dark:focus:text-timber-green desktop:mx-2 desktop:py-2 [&.active]:text-black"
                 data-te-nav-link-ref
                 data-te-ripple-init
                 data-te-ripple-color="light"

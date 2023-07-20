@@ -24,7 +24,7 @@ const FooterMenu = () => {
   ];
 
   return (
-    <div className="flex lg:flex-1">
+    <div className="flex desktop:flex-1">
       {[...Array(numOfUl)].map((_, index) => {
         const cumulativeSize = menuSectionTitle
           .slice(0, index)
@@ -33,7 +33,7 @@ const FooterMenu = () => {
         return (
           <ul key={index} className="menu pr-10">
             {menuSectionTitle[index] && (
-              <div className="menu-title pb-3 font-bold" key={index}>
+              <div className="menu-title pb-3 font-bold text-white" key={index}>
                 {menuSectionTitle[index].label}
               </div>
             )}
@@ -44,7 +44,7 @@ const FooterMenu = () => {
                 cumulativeSize + menuSectionTitle[index].size,
               )
               .map(({ label, link }, i) => (
-                <li key={i} className="pb-3 hover:underline">
+                <li key={i} className="pb-3 text-white hover:underline">
                   <a href={link}>{label}</a>
                 </li>
               ))}

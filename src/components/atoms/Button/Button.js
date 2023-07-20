@@ -3,7 +3,10 @@ import "./Button.css";
 
 const Button = ({ text, onClick, buttonClassName }) => {
   return (
-    <button className={`button ${buttonClassName}`} onClick={onClick}>
+    <button
+      className={`button bg-timber-green hover:opacity-70 ${buttonClassName}`}
+      onClick={onClick}
+    >
       {text}
     </button>
   );

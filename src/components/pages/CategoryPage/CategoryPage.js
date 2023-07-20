@@ -17,7 +17,7 @@ const CategoryPage = () => {
 
   return (
     <>
-      <Button onClick={handleButtonClick}>Load Lazy Component</Button>
+      <Button onClick={handleButtonClick} text="Load Lazy Component" />
       <Suspense fallback={<Placeholder />}>
         {showLazyComponent && (
           <LazyComponent

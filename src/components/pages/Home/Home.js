@@ -32,7 +32,19 @@ const Home = () => {
           you #BeOutside.
         </h1>
       </CenteredContainer>
-      <SiteHeader disabledButton />
+      <SiteHeader />
+      <CenteredContainer>
+        <CategoryPage />
+      </CenteredContainer>
+      <CenteredContainer>
+        <CategoryPage />
+      </CenteredContainer>
+      <CenteredContainer>
+        <CategoryPage />
+      </CenteredContainer>
+      <CenteredContainer>
+        <CategoryPage />
+      </CenteredContainer>
       <CenteredContainer>
         <CategoryPage />
       </CenteredContainer>

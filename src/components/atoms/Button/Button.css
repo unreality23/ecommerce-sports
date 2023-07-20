@@ -4,15 +4,15 @@
 
 .button {
   /* Tailwind CSS classes for button styling */
-  @apply rounded-md bg-blue-500 px-4 py-2 text-white;
+  @apply rounded-md bg-timber-green px-4 py-2 text-white;
 }
 
 .button:hover {
   /* Tailwind CSS classes for hover state */
-  @apply bg-blue-600;
+  @apply bg-timber-green;
 }
 
 .button:focus {
   /* Tailwind CSS classes for focus state */
-  @apply ring-2 ring-blue-500;
+  @apply bg-timber-green ring-2;
 }

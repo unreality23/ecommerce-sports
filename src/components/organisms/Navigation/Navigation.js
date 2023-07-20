@@ -28,30 +28,30 @@ const Navigation = () => {
     {
       iconType: "magnifying-glass",
       link: "/",
-      color: "hover:text-blue-600",
+      extraClass: "hover:opacity-70",
       iconPrefix: "fa",
     },
     {
       iconType: "user",
       link: "/",
-      color: "hover:text-blue-400",
+      extraClass: "hover:opacity-70",
       iconPrefix: "fa",
     },
     {
       iconType: "basket-shopping",
       link: "/",
-      color: "hover:text-pink-500",
+      extraClass: "hover:opacity-70",
       iconPrefix: "fa",
     },
   ];
 
   return (
-    <nav className="mx-auto flex w-full max-w-7xl items-center justify-between p-6 lg:px-8">
+    <nav className="mx-auto flex w-full max-w-7xl items-center justify-between p-6 desktop:px-8">
       <Logo
         image="/logo/sports-low-resolution-logo-white-on-black-background.png"
         title="Sports - Staying Healthy"
         link="/"
-        className="hidden lg:flex"
+        className="hidden desktop:flex"
         classNameImg="w-40"
       />
       <div className="flex w-full  flex-wrap items-center justify-between justify-between px-3">

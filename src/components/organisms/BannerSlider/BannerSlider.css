@@ -21,7 +21,7 @@
 
 .prev-button,
 .next-button {
-  @apply absolute top-1/2 -translate-y-1/2 transform cursor-pointer border-none bg-black px-4 py-2 text-white;
+  @apply absolute top-1/2 -translate-y-1/2 transform cursor-pointer border-none bg-timber-green px-4 py-2 text-white;
 }
 
 .prev-button {
