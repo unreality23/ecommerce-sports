@@ -37,7 +37,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-timber-green py-5">
-      <div className="top-footer mx-auto flex w-full max-w-7xl flex-col items-start justify-center p-6 desktop:px-8">
+      <div className="top-footer m-6 mx-auto flex w-full max-w-7xl flex-col items-start justify-center desktop:px-8">
         <div className="content flex justify-start">
           <div className="content-left flex flex-col">
             <Logo
@@ -46,7 +46,10 @@ const Footer = () => {
               link="/"
               classNameImg="w-28"
             />
-            <IconMenu classNameProp="mt-2 text-white" iconTypes={socials} />
+            <IconMenu
+              classNameProp="mt-2 text-white gap-x-4"
+              iconTypes={socials}
+            />
           </div>
           <div className="content-right flex">
             <FooterMenu />

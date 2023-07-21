@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../../atoms/Button/Button";
 import BannerSlider from "../../organisms/BannerSlider/BannerSlider";
 import CenteredContainer from "../../atoms/CenteredContainer/CenteredContainer";
 import SiteHeader from "../../molecules/SiteHeader/SiteHeader";
@@ -19,8 +18,6 @@ const Home = () => {
       caption: "Slide 3",
     },
   ];
-
-  const handleClick = () => {};
 
   return (
     <div>

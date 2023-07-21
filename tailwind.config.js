@@ -1,11 +1,15 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config}*/
 module.exports = {
-  content: ['./public/**/*.{js,jsx,ts,tsx}','./src/**/*.{js,jsx,ts,tsx}'],
+  mode: 'jit',
+  content: ['./src/**/*.{js,jsx,ts,tsx}','./public/index.html'],
   theme: {
     screens: {
-      tablet: '1024px',
+      tablet: '768px',
       desktop: '1025px',
-      mobile: '768px'
+      mobile: '0px'
+    },
+    fontFamily: {
+      sans: ['Roboto', 'sans-serif'],
     },
     colors: {
       'white': '#fff',
@@ -14,7 +18,8 @@ module.exports = {
       'instagram': '#8a3ab9',
       'facebook': '#3b5998',
       'twitter': '#00acee',
-      'transparent': '#00000000'
+      'transparent': '#00000000',
+      'gray-nurse': '#f6f7f6',
     },
     extend: {},
   },
