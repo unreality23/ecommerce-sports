@@ -46,18 +46,18 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="m-6  mx-auto flex w-full max-w-7xl items-center justify-between desktop:px-8">
+    <nav className="m-6  mx-auto flex w-full max-w-7xl items-center desktop:justify-between desktop:px-8">
       <Logo
         image="/logo/sports-low-resolution-logo-white-on-black-background.png"
         title="Sports - Staying Healthy"
         link="/"
-        className="hidden desktop:flex"
+        className="left-0 order-2 desktop:order-none"
         classNameImg="group-[.active]:w-24 w-40"
       />
-      <div className="mx-3 flex  w-full flex-wrap items-center justify-between justify-between">
+      <div className="mx-3 flex w-auto flex-wrap items-center justify-between justify-between order-1 desktop:order-none">
         <Menu menuItems={menuItems} />
       </div>
-      <div className="flex hidden flex-wrap items-center justify-between px-3 desktop:block">
+      <div className="flex hidden flex-wrap items-center justify-between px-3 desktop:block order-3 desktop:order-none">
         <IconMenu iconTypes={accountMenuItems} />
       </div>
     </nav>

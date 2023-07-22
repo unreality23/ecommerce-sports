@@ -7,18 +7,27 @@ const Menu = ({ menuItems }) => {
   const [isActive, setActive] = useState(false);
   const [menuHeight, setMenuHeight] = useState(0);
   const toggleClass = () => {
+    updateMenuHeight();
     setActive(!isActive);
   };
 
-  useEffect(() => {
-    const updateMenuHeight = () => {
-      const headerElement = document.getElementById("header");
-      if (headerElement) {
-        const newMenuHeight = headerElement.clientHeight;
-        setMenuHeight(newMenuHeight);
-      }
-    };
+  const updateMenuHeight = () => {
+    const headerElement = document.getElementById("header");
+    if (headerElement) {
+      const newMenuHeight = headerElement.clientHeight;
+      setMenuHeight(newMenuHeight);
+    }
+  };
 
+
+
+  useEffect(() => {
+
+    if (isActive) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
     updateMenuHeight();
 
     window.addEventListener("resize", updateMenuHeight);
@@ -26,7 +35,7 @@ const Menu = ({ menuItems }) => {
     return () => {
       window.removeEventListener("resize", updateMenuHeight);
     };
-  }, []);
+  }, [isActive]);
 
   const menuStyle = {
     top: `${menuHeight}px`,
@@ -125,12 +134,12 @@ const Menu = ({ menuItems }) => {
       <div
         className={`
         ${!isActive ? "-translate-x-full" : "translate-x-0"}
-        !visible absolute -mx-3 w-5/6 grow  basis-[100%] items-center border-r bg-white transition-transform 
+        !visible absolute -mx-3 w-4/6 grow  basis-[100%] items-center border-r bg-white transition-transform 
         duration-300 desktop:relative desktop:!top-0 desktop:!flex desktop:basis-auto desktop:translate-x-0 
         desktop:border-r-0  desktop:duration-0 
          `}
         style={{
-          ...(window.innerWidth < 768 ? { ...mobileMenuHeight, ...menuStyle } : {}),
+          ...(window.innerWidth <= 1024 ? { ...mobileMenuHeight, ...menuStyle } : {}),
         }}
         id="navbarSupportedContentY"
         data-te-collapse-item
