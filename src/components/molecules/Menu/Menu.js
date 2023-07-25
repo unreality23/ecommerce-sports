@@ -19,12 +19,9 @@ const Menu = ({ menuItems }) => {
     }
   };
 
-
-
   useEffect(() => {
-
     if (isActive) {
-      document.body.classList.add('overflow-hidden');
+      document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
@@ -43,7 +40,7 @@ const Menu = ({ menuItems }) => {
 
   const mobileMenuHeight = {
     height: `calc(100vh - ${menuHeight}px)`,
-  }
+  };
 
   const accountMenuItems = [
     {
@@ -134,12 +131,14 @@ const Menu = ({ menuItems }) => {
       <div
         className={`
         ${!isActive ? "-translate-x-full" : "translate-x-0"}
-        !visible absolute -mx-3 w-4/6 grow  basis-[100%] items-center border-r bg-white transition-transform 
+        !visible absolute -mx-3 w-4/6 grow  basis-[100%] items-center  border-r border-gray-nurse bg-white transition-transform 
         duration-300 desktop:relative desktop:!top-0 desktop:!flex desktop:basis-auto desktop:translate-x-0 
         desktop:border-r-0  desktop:duration-0 
          `}
         style={{
-          ...(window.innerWidth <= 1024 ? { ...mobileMenuHeight, ...menuStyle } : {}),
+          ...(window.innerWidth <= 1024
+            ? { ...mobileMenuHeight, ...menuStyle }
+            : {}),
         }}
         id="navbarSupportedContentY"
         data-te-collapse-item
@@ -148,21 +147,22 @@ const Menu = ({ menuItems }) => {
           {menuItems.map(({ link, label }, index) => (
             <li
               key={index}
-              className="px-5 py-2 transition duration-300 ease-in-out hover:bg-gray-nurse hover:desktop:bg-white desktop:mb-0 desktop:pr-2"
+              className="px-5 py-2 transition duration-300 ease-in-out hover:bg-gray-nurse desktop:mb-0 desktop:pr-2 hover:desktop:bg-white"
+              onClick={toggleClass}
               data-te-nav-item-ref
             >
               <NavLink
-                className="relative block transform-gpu ease-in-out hover:border-black
-                            hover:text-timber-green focus:text-timber-green disabled:text-black dark:hover:text-timber-green dark:focus:text-timber-green
-                            desktop:mx-2 desktop:py-2 desktop:before:absolute desktop:before:bottom-0
-                            desktop:before:left-0 desktop:before:h-0.5 desktop:before:w-full
-
-                            desktop:before:origin-bottom-right desktop:before:scale-x-0 desktop:before:bg-timber-green
-                            desktop:before:transition-transform desktop:before:duration-150 desktop:before:content-[''] desktop:before:hover:origin-bottom-left
-                            desktop:before:hover:scale-x-100 [&.active]:text-black"
+                className="relative block transform-gpu text-lg ease-in-out
+                            hover:border-black hover:text-timber-green focus:text-timber-green disabled:text-black dark:hover:text-timber-green
+                            dark:focus:text-timber-green desktop:mx-2 desktop:py-2 desktop:text-base
+                            desktop:before:absolute desktop:before:bottom-0 desktop:before:left-0
+                            desktop:before:h-0.5 desktop:before:w-full desktop:before:origin-bottom-right
+                            desktop:before:scale-x-0 desktop:before:bg-timber-green desktop:before:transition-transform desktop:before:duration-150
+                            desktop:before:content-[''] desktop:before:hover:origin-bottom-left desktop:before:hover:scale-x-100 [&.active]:text-black"
                 data-te-nav-link-ref
                 data-te-ripple-init
                 data-te-ripple-color="light"
+
                 to={link}
               >
                 {label}

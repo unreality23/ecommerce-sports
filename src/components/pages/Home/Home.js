@@ -33,18 +33,6 @@ const Home = () => {
       <CenteredContainer>
         <CategoryPage />
       </CenteredContainer>
-      <CenteredContainer>
-        <CategoryPage />
-      </CenteredContainer>
-      <CenteredContainer>
-        <CategoryPage />
-      </CenteredContainer>
-      <CenteredContainer>
-        <CategoryPage />
-      </CenteredContainer>
-      <CenteredContainer>
-        <CategoryPage />
-      </CenteredContainer>
     </div>
   );
 };

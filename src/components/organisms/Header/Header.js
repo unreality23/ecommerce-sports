@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <header
       id="header"
-      className={`sticky top-0 z-50 border-b border-black bg-white ${
+      className={`sticky top-0 z-50 border-b border-gray-nurse bg-white ${
         isSticky && "active group"
       }`}
     >

@@ -54,10 +54,10 @@ const Navigation = () => {
         className="left-0 order-2 desktop:order-none"
         classNameImg="group-[.active]:w-24 w-40"
       />
-      <div className="mx-3 flex w-auto flex-wrap items-center justify-between justify-between order-1 desktop:order-none">
+      <div className="item-center order-1 mx-3 flex w-auto desktop:order-none desktop:flex-grow">
         <Menu menuItems={menuItems} />
       </div>
-      <div className="flex hidden flex-wrap items-center justify-between px-3 desktop:block order-3 desktop:order-none">
+      <div className="order-3 flex hidden flex-wrap items-center px-3 desktop:order-none desktop:block">
         <IconMenu iconTypes={accountMenuItems} />
       </div>
     </nav>

@@ -20,6 +20,8 @@ module.exports = {
       'twitter': '#00acee',
       'transparent': '#00000000',
       'gray-nurse': '#f6f7f6',
+      'dark-gray': '#686363',
+      'red': '#FF0000',
     },
     extend: {},
   },

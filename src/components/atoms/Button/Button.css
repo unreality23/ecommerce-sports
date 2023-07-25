@@ -1,18 +1,1 @@
 /* button.css */
-
-/* Additional component-specific styles */
-
-.button {
-  /* Tailwind CSS classes for button styling */
-  @apply rounded-md bg-timber-green px-4 py-2 text-white;
-}
-
-.button:hover {
-  /* Tailwind CSS classes for hover state */
-  @apply bg-timber-green;
-}
-
-.button:focus {
-  /* Tailwind CSS classes for focus state */
-  @apply bg-timber-green ring-2;
-}
