@@ -112,7 +112,11 @@ const CategoryPage = () => {
   return (
     <>
       <Suspense fallback={<Placeholder />}>
-        <LazyComponent products={products} viewProductsPerPage={4} showProductList={false} />
+        <LazyComponent
+          viewProductsPerPage={4}
+          showProductList={false}
+          listType="/categories/"
+        />
       </Suspense>
     </>
   );

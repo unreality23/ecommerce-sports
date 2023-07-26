@@ -54,7 +54,7 @@ const Pagination = ({
   };
 
   return (
-    <div className="mt-6 flex items-center justify-center mb-20">
+    <div className="mb-20 mt-6 flex items-center justify-center">
       <Button
         buttonClassName={`mx-2 px-4 py-2 ${
           currentPage === 1 ? "opacity-70" : ""

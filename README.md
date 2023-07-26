@@ -6,11 +6,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project has five levels of atomic design:
 
-* Atoms
-* Molecules
-* Organisms
-* Templates
-* Pages
+- Atoms
+- Molecules
+- Organisms
+- Templates
+- Pages
 
 ## Available Scripts
 

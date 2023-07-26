@@ -20,11 +20,14 @@ const Menu = ({ menuItems }) => {
   };
 
   useEffect(() => {
-    if (isActive) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
+    if (window.innerWidth <= 1024) {
+      if (isActive) {
+        document.body.classList.add("overflow-hidden");
+      } else {
+        document.body.classList.remove("overflow-hidden");
+      }
     }
+
     updateMenuHeight();
 
     window.addEventListener("resize", updateMenuHeight);
@@ -162,7 +165,6 @@ const Menu = ({ menuItems }) => {
                 data-te-nav-link-ref
                 data-te-ripple-init
                 data-te-ripple-color="light"
-
                 to={link}
               >
                 {label}

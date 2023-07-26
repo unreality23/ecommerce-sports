@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import Button from "../../atoms/Button/Button";
 import Pagination from "../../molecules/Pagination/Pagination";
+import { CartContext } from "../../../contexts/CartContext";
 
-const Product = ({ products, viewProductsPerPage, showProductList }) => {
+const Product = ({ viewProductsPerPage, showProductList, listType }) => {
   const productsPerPage = viewProductsPerPage;
-  const totalPages = Math.ceil(products.length / productsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
   const maxPaginationButtonsToShow = 5;
 
+  const { addToCart } = useContext(CartContext);
+
   const [sortingOption, setSortingOption] = useState("lowest"); // Default sorting option is 'lowest'
-  const [sortedProducts, setSortedProducts] = useState([...products]);
+
+  const [products, setProducts] = useState([]);
+  const [sortedProducts, setSortedProducts] = useState([]);
+
+  useEffect(() => {
+    const axiosInstance = axios.create({
+      baseURL: "http://localhost:5000/",
+    });
+    // Fetch list of products from the API once component mounts
+    axiosInstance
+      .get(listType)
+      .then((response) => {
+        setProducts(response.data);
+        setSortedProducts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products: ", error);
+      });
+  }, []);
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
   const getCurrentProducts = () => {
     const startIndex = (currentPage - 1) * productsPerPage;
@@ -53,7 +76,9 @@ const Product = ({ products, viewProductsPerPage, showProductList }) => {
     setSortedProducts(sortedProducts);
   };
 
-  const handleClick = () => {};
+  const handleClick = (product) => {
+    addToCart(product);
+  };
 
   return (
     <div className="flex flex-col">
@@ -79,7 +104,7 @@ const Product = ({ products, viewProductsPerPage, showProductList }) => {
           />
         </div>
       )}
-      <div className="mb-5 grid gap-6 grid-cols-2 desktop:grid-cols-4">
+      <div className="mb-5 grid grid-cols-2 gap-6 desktop:grid-cols-4">
         {getCurrentProducts().map((product) => (
           <div
             className="product group flex flex-grow flex-col"
@@ -92,44 +117,44 @@ const Product = ({ products, viewProductsPerPage, showProductList }) => {
                   alt={product.description}
                   className="w-full transform transition-transform duration-150 hover:scale-105"
                 />
-                {showProductList &&
-                <>
-                  {product.labelText.length > 0 && (
-                    <div className="absolute bottom-2 left-2 rounded-3xl bg-dark-gray px-4 py-1 text-sm text-red ">
-                      {product.labelText}
-                    </div>
-                  )}
-                </>
-                }
-
-
+                {showProductList && (
+                  <>
+                    {product.labelText.length > 0 && (
+                      <div className="absolute bottom-2 left-2 rounded-3xl bg-dark-gray px-4 py-1 text-sm text-red ">
+                        {product.labelText}
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
               <div className="info-area pt-2">
-                <div className='text flex flex-row group'>
-                  <p className={` font-medium ${!showProductList ? "text-base" : "text-sm group-hover:underline"} `}>
+                <div className="text group flex flex-row">
+                  <p
+                    className={` font-medium ${
+                      !showProductList
+                        ? "text-base"
+                        : "text-sm group-hover:underline"
+                    } `}
+                  >
                     {product.name}
                   </p>
                   {!showProductList && (
-                    <p className="group-hover:translate-x-2 transform transition-transform duration-300 w-8">
+                    <p className="w-8 transform transition-transform duration-300 group-hover:translate-x-2">
                       <svg
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      aria-hidden="true"
-                      focusable="false"
-                      className="icon icon-arrow pl-1"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793
+                        viewBox="0 0 14 10"
+                        fill="none"
+                        aria-hidden="true"
+                        focusable="false"
+                        className="icon icon-arrow pl-1"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793
                           5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z"
-                        fill="currentColor"
-                      ></path>
-                    </svg>
+                          fill="currentColor"
+                        ></path>
+                      </svg>
                     </p>
-
-
                   )}
                 </div>
 
@@ -150,7 +175,7 @@ const Product = ({ products, viewProductsPerPage, showProductList }) => {
                 <Button
                   text="Add To Cart"
                   buttonClassName="main-button w-full py-3"
-                  onClick={handleClick}
+                  onClick={() => handleClick(product)}
                 />
               </div>
             )}
