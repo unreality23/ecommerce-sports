@@ -7,6 +7,7 @@ const ShoppingCart = () => {
 
   const cartAnimation = useSpring({
     opacity: isOpen ? 1 : 0,
+    visibility: isOpen ? 'visible': 'hidden',
   })
 
   return (

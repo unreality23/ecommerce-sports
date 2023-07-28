@@ -9,7 +9,7 @@ const Placeholder = () => {
   return <div>Loading...</div>;
 };
 
-const Products = () => {
+const ProductsPage = () => {
   return (
     <div className="sm:px-6 mx-auto mt-10 max-w-7xl px-4 ">
       <Suspense fallback={<Placeholder />}>
@@ -23,4 +23,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ProductsPage;

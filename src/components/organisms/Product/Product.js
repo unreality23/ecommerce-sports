@@ -37,6 +37,9 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
   const getCurrentProducts = () => {
     const startIndex = (currentPage - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
+    if(viewProductsPerPage === undefined) {
+      return sortedProducts;
+    }
     return sortedProducts.slice(startIndex, endIndex);
   };
 
@@ -182,7 +185,7 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
           </div>
         ))}
       </div>
-      {showProductList && (
+      {showProductList && viewProductsPerPage != undefined &&
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
@@ -191,7 +194,7 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
           handleNext={handleNext}
           handlePageChange={handlePageChange}
         />
-      )}
+      }
     </div>
   );
 };

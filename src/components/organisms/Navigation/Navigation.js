@@ -23,6 +23,7 @@ const Navigation = () => {
   const menuItems = [
     { label: "Home", link: "/" },
     { label: "Products", link: "/products" },
+    { label: "Categories", link: "/categories" },
     { label: "Bestsellers", link: "/bestsellers" },
     { label: "New In", link: "/new-in" },
     { label: "Shop All", link: "/shop-all" },
