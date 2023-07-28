@@ -8,7 +8,6 @@ const Layout = () => {
   return (
     <div className="flex h-screen flex-col justify-between">
       <Header />
-      <ShoppingCart />
       <main>
         <Outlet />
       </main>
