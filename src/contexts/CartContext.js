@@ -27,7 +27,6 @@ const CartProvider = ({ children }) => {
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
-
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
@@ -54,7 +53,7 @@ const CartProvider = ({ children }) => {
 
   const removeFromCart = (productId) => {
     setCart((prevCart) =>
-      prevCart.filter((product) => product.id !== productId),
+      prevCart.filter((product) => product.id !== productId)
     );
   };
 
@@ -69,13 +68,12 @@ const CartProvider = ({ children }) => {
   const productQuantity = (productId, newQuantity) => {
     setCart((prevCart) =>
       prevCart.map((product) =>
-        product.id === productId
-          ? { ...product, quantity: newQuantity }
-          : product
+        product.id === productId ?
+          {...product, quantity: newQuantity} :
+          product
       )
-    );
-  };
-
+    )
+  }
 
   return (
     <CartContext.Provider

@@ -41,7 +41,7 @@ const Footer = () => {
         <div className="content flex justify-start">
           <div className="content-left flex flex-col">
             <Logo
-              image="/logo/sports-low-resolution-logo-white-on-black-background.png"
+              image="/logo/vita-force-transparent.png"
               title="Sports - Staying Healthy"
               link="/"
               classNameImg="w-28"

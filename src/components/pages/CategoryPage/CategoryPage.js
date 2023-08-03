@@ -1,5 +1,4 @@
 import React, { Suspense, useState } from "react";
-import Button from "../../atoms/Button/Button";
 import Product from '../../organisms/Product/Product';
 const LazyComponent = React.lazy(() =>
   import("../../organisms/Product/Product"),
@@ -16,7 +15,7 @@ const CategoryPage = () => {
       <Suspense fallback={<Placeholder />}>
         <Product
           showProductList={false}
-          listType="/categories/"
+          listType="Categories"
         />
       </Suspense>
     </div>

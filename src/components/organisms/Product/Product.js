@@ -17,19 +17,35 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
   const [sortedProducts, setSortedProducts] = useState([]);
 
   useEffect(() => {
-    const axiosInstance = axios.create({
-      baseURL: "http://localhost:5000/",
+    let AWS = require('../../../data/aws-config');
+    let docClient = new AWS.DynamoDB.DocumentClient();
+
+    let params = {
+      TableName: listType,
+    };
+
+    docClient.scan(params, function(err, data) {
+      if(err) {
+        console.log("Error", err)
+      } else {
+        setProducts(data.Items);
+        setSortedProducts(data.Items);
+      }
     });
-    // Fetch list of products from the API once component mounts
-    axiosInstance
-      .get(listType)
-      .then((response) => {
-        setProducts(response.data);
-        setSortedProducts(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching products: ", error);
-      });
+
+    // const axiosInstance = axios.create({
+    //   baseURL: "http://localhost:5000/",
+    // });
+    //
+    // axiosInstance
+    //   .get(listType)
+    //   .then((response) => {
+    //     setProducts(response.data);
+    //     setSortedProducts(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching products: ", error);
+    //   });
   }, []);
 
   const totalPages = Math.ceil(products.length / productsPerPage);

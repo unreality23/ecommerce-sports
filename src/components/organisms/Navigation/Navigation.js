@@ -39,7 +39,7 @@ const Navigation = () => {
     },
     {
       iconType: "user",
-      link: "/",
+      link: "/account",
       extraClass: "hover:opacity-70",
       iconPrefix: "fa",
     },
@@ -56,7 +56,7 @@ const Navigation = () => {
   return (
     <nav className="m-6  mx-auto flex w-full max-w-7xl items-center desktop:justify-between desktop:px-8">
       <Logo
-        image="/logo/sports-low-resolution-logo-white-on-black-background.png"
+        image="/logo/vita-force-transparent.png"
         title="Sports - Staying Healthy"
         link="/"
         className="left-0 order-2 desktop:order-none"

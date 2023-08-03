@@ -12,6 +12,10 @@ import Faq from "./components/pages/ContentPages/Faq/Faq";
 import Terms from "./components/pages/ContentPages/Terms/Terms";
 import ContentLayout from "./components/templates/ContentLayout/ContentLayout";
 import CategoryPage from './components/pages/CategoryPage/CategoryPage';
+import AccountPage from './components/pages/AccountPage/AccountPage';
+import { AccountProvider } from './contexts/AccountContext';
+import SignIn from './components/pages/AuthPages/SignInPage';
+import SignUp from './components/pages/AuthPages/SignUpPage';
 const App = () => {
   return (
     <>
@@ -20,6 +24,9 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/categories" element={<CategoryPage />} />
+          <Route path="/account" element={<AccountProvider><AccountPage /></AccountProvider>} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
         <Route element={<ContentLayout />}>
