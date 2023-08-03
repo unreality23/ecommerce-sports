@@ -1,6 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const SelectInput = ({ name, label, modelValue, updateModelValue, options, placeholder = 'Select options' }) => {
+const SelectInput = ({
+  name,
+  label,
+  modelValue,
+  updateModelValue,
+  options,
+  placeholder = "Select options",
+}) => {
   const capitalizeFirstLetter = label.charAt(0).toUpperCase() + label.slice(1);
 
   return (
@@ -13,8 +20,8 @@ const SelectInput = ({ name, label, modelValue, updateModelValue, options, place
         name={name}
         value={modelValue}
         onChange={(e) => updateModelValue(e.target.value)}
-        className="form-control transition-all duration-500 pl-2 w-full h-10 border border-gray-400
-        hover:border-green-400 focus:border-green-400 active:border-green-400"
+        className="form-control border-gray-400 hover:border-green-400 focus:border-green-400 active:border-green-400 h-10 w-full border
+        pl-2 transition-all duration-500"
       >
         <option disabled={!modelValue} value="">
           {placeholder}

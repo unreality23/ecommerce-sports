@@ -1,5 +1,5 @@
 import React, { Suspense, useState } from "react";
-import Product from '../../organisms/Product/Product';
+import Product from "../../organisms/Product/Product";
 const LazyComponent = React.lazy(() =>
   import("../../organisms/Product/Product"),
 );
@@ -9,14 +9,10 @@ const Placeholder = () => {
 };
 
 const CategoryPage = () => {
-
   return (
-    <div className="sm:px-6 mx-auto mt-10 max-w-7xl px-4 mb-20">
+    <div className="sm:px-6 mx-auto mb-20 mt-10 max-w-7xl px-4">
       <Suspense fallback={<Placeholder />}>
-        <Product
-          showProductList={false}
-          listType="Categories"
-        />
+        <Product showProductList={false} listType="Categories" />
       </Suspense>
     </div>
   );

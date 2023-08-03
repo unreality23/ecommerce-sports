@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
-import { Routes, Route } from "react-router-dom";
+import { Route, useLocation, useNavigate, Routes } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
 //Pages
 import Home from "./components/pages/Home/Home";
 import ProductsPage from "./components/pages/ProductsPage/ProductsPage";
@@ -11,12 +12,34 @@ import About from "./components/pages/ContentPages/About/About";
 import Faq from "./components/pages/ContentPages/Faq/Faq";
 import Terms from "./components/pages/ContentPages/Terms/Terms";
 import ContentLayout from "./components/templates/ContentLayout/ContentLayout";
-import CategoryPage from './components/pages/CategoryPage/CategoryPage';
-import AccountPage from './components/pages/AccountPage/AccountPage';
-import { AccountProvider } from './contexts/AccountContext';
-import SignIn from './components/pages/AuthPages/SignInPage';
-import SignUp from './components/pages/AuthPages/SignUpPage';
+import CategoryPage from "./components/pages/CategoryPage/CategoryPage";
+import AccountPage from "./components/pages/AccountPage/AccountPage";
+import { AccountProvider } from "./contexts/AccountContext";
+import { AuthContext } from "./contexts/AuthContext";
+import AuthPage from './components/pages/AuthPages/AuthPage';
 const App = () => {
+  const { isLoggedIn } = useContext(AuthContext);
+  const [unmounted, setUnmounted] = useState(false);
+  const ProtectedRoute = ({ isLoggedInStatus, children }) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      if(!isLoggedIn && location.pathname !== '/auth') {
+        navigate('/auth')
+      }
+      else if(isLoggedIn && location.pathname === '/auth') {
+        console.log('loggedIn')
+        navigate('/account')
+      }
+
+      return () => {
+        setUnmounted(true);
+      }
+    }, [isLoggedIn, location, navigate, unmounted]);
+
+    return children
+  }
   return (
     <>
       <Routes>
@@ -24,9 +47,8 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/categories" element={<CategoryPage />} />
-          <Route path="/account" element={<AccountProvider><AccountPage /></AccountProvider>} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/auth" element={<ProtectedRoute isLoggedInStatus={!isLoggedIn}><AuthPage  /></ProtectedRoute>} />
+          <Route path="/account" element={<ProtectedRoute isLoggedInStatus={isLoggedIn}><AccountProvider><AccountPage /></AccountProvider></ProtectedRoute>} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
         <Route element={<ContentLayout />}>

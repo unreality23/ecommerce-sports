@@ -1,6 +1,12 @@
-import React from 'react';
+import React from "react";
 
-const TextInput = ({ name, label, type = 'text', modelValue, updateModelValue }) => {
+const TextInput = ({
+  name,
+  label,
+  type = "text",
+  modelValue,
+  updateModelValue,
+}) => {
   const capitalizeFirstLetter = label.charAt(0).toUpperCase() + label.slice(1);
 
   return (
@@ -14,8 +20,8 @@ const TextInput = ({ name, label, type = 'text', modelValue, updateModelValue })
         value={modelValue}
         onChange={(e) => updateModelValue(e.target.value)}
         placeholder={capitalizeFirstLetter}
-        className="form-control transition-all pl-2 w-full h-10 border border-gray-400 hover:border-green-400
-        focus:border-green-400 active:border-green-400"
+        className="form-control border-gray-400 hover:border-green-400 focus:border-green-400 active:border-green-400 h-10 w-full border
+        pl-2 transition-all"
         name={name}
       />
     </>

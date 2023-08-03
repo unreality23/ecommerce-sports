@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import Logo from "../../atoms/Logo/Logo";
 import Menu from "../../molecules/Menu/Menu";
 import "./Navigation.css";
@@ -12,13 +12,12 @@ import {
   faUser,
   faShoppingBasket,
 } from "@fortawesome/free-solid-svg-icons";
-import ShoppingCart from '../ShoppingCart/ShoppingCart';
-import { CartContext } from '../../../contexts/CartContext';
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import { CartContext } from "../../../contexts/CartContext";
 
 library.add(faMagnifyingGlass, faUser, faShoppingBasket);
 const Navigation = () => {
   const { cartQuantity, handleCartToggle } = useContext(CartContext);
-
 
   const menuItems = [
     { label: "Home", link: "/" },
@@ -49,7 +48,7 @@ const Navigation = () => {
       extraClass: "hover:opacity-70",
       iconPrefix: "fa",
       hoverFunction: handleCartToggle,
-      textPrefix: cartQuantity
+      textPrefix: cartQuantity,
     },
   ];
 
@@ -67,8 +66,7 @@ const Navigation = () => {
       </div>
       <div className="relative order-3 flex hidden flex-wrap items-center px-3 desktop:order-none desktop:block">
         <IconMenu iconTypes={accountMenuItems} />
-        <ShoppingCart  />
-
+        <ShoppingCart />
       </div>
     </nav>
   );

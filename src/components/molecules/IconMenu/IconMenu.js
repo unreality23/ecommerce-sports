@@ -30,7 +30,6 @@ const IconMenu = ({ classNameProp, iconTypes }) => {
             <NavLink to={link}>
               <FontAwesomeIcon icon={[iconPrefix, iconType]} /> {text}
             </NavLink>
-
           </li>
         ),
       )}

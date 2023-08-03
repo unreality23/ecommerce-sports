@@ -17,16 +17,16 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
   const [sortedProducts, setSortedProducts] = useState([]);
 
   useEffect(() => {
-    let AWS = require('../../../data/aws-config');
+    let AWS = require("../../../data/aws-config");
     let docClient = new AWS.DynamoDB.DocumentClient();
 
     let params = {
       TableName: listType,
     };
 
-    docClient.scan(params, function(err, data) {
-      if(err) {
-        console.log("Error", err)
+    docClient.scan(params, function (err, data) {
+      if (err) {
+        console.log("Error", err);
       } else {
         setProducts(data.Items);
         setSortedProducts(data.Items);
@@ -53,7 +53,7 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
   const getCurrentProducts = () => {
     const startIndex = (currentPage - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
-    if(viewProductsPerPage === undefined) {
+    if (viewProductsPerPage === undefined) {
       return sortedProducts;
     }
     return sortedProducts.slice(startIndex, endIndex);
@@ -201,7 +201,7 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
           </div>
         ))}
       </div>
-      {showProductList && viewProductsPerPage != undefined &&
+      {showProductList && viewProductsPerPage != undefined && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
@@ -210,7 +210,7 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
           handleNext={handleNext}
           handlePageChange={handlePageChange}
         />
-      }
+      )}
     </div>
   );
 };
