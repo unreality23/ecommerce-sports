@@ -1,6 +1,6 @@
 import "tailwindcss/tailwind.css";
 import { Route, useLocation, useNavigate, Routes } from "react-router-dom";
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 //Pages
 import Home from "./components/pages/Home/Home";
 import ProductsPage from "./components/pages/ProductsPage/ProductsPage";
@@ -16,30 +16,44 @@ import CategoryPage from "./components/pages/CategoryPage/CategoryPage";
 import AccountPage from "./components/pages/AccountPage/AccountPage";
 import { AccountProvider } from "./contexts/AccountContext";
 import { AuthContext } from "./contexts/AuthContext";
-import AuthPage from './components/pages/AuthPages/AuthPage';
+import AuthPage from "./components/pages/AuthPages/AuthPage";
 const App = () => {
   const { isLoggedIn } = useContext(AuthContext);
   const [unmounted, setUnmounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate an async operation (e.g. checking user authentication status)
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   const ProtectedRoute = ({ isLoggedInStatus, children }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
-      if(!isLoggedIn && location.pathname !== '/auth') {
-        navigate('/auth')
-      }
-      else if(isLoggedIn && location.pathname === '/auth') {
-        console.log('loggedIn')
-        navigate('/account')
+      if (!isLoggedIn && location.pathname !== "/auth") {
+        navigate("/auth");
+      } else if (isLoggedIn && location.pathname === "/auth") {
+        console.log("loggedIn");
+        navigate("/account");
       }
 
       return () => {
         setUnmounted(true);
-      }
+      };
     }, [isLoggedIn, location, navigate, unmounted]);
 
-    return children
-  }
+    return children;
+  };
   return (
     <>
       <Routes>
@@ -47,8 +61,24 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/categories" element={<CategoryPage />} />
-          <Route path="/auth" element={<ProtectedRoute isLoggedInStatus={!isLoggedIn}><AuthPage  /></ProtectedRoute>} />
-          <Route path="/account" element={<ProtectedRoute isLoggedInStatus={isLoggedIn}><AccountProvider><AccountPage /></AccountProvider></ProtectedRoute>} />
+          <Route
+            path="/auth"
+            element={
+              <ProtectedRoute isLoggedInStatus={!isLoggedIn}>
+                <AuthPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute isLoggedInStatus={isLoggedIn}>
+                <AccountProvider>
+                  <AccountPage />
+                </AccountProvider>
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
         <Route element={<ContentLayout />}>

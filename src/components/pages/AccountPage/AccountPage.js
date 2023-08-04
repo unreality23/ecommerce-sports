@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AccountMenu from "./menu/AccountMenu";
 import { AccountContext } from "../../../contexts/AccountContext";
-import { AuthContext } from '../../../contexts/AuthContext';
+import { AuthContext } from "../../../contexts/AuthContext";
 const AccountPage = () => {
   const { components, currentComponent } = useContext(AccountContext);
-  const { isLoggedIn } = useContext(AuthContext);
-
+  const { isLoggedIn, user, signOut } = useContext(AuthContext);
+  const [firstName, setFirstName] = useState("");
   // let AWS = require('../../../data/aws-config');
   // let docClient = new AWS.DynamoDB.DocumentClient();
 
@@ -133,13 +133,21 @@ const AccountPage = () => {
   //   })
   // })
 
+  useEffect(() => {
+    if (user && user.name) {
+      const nameParts = user.name.split(" ");
+      setFirstName(nameParts[0]);
+    }
+  }, [user]);
+
   return (
     <div className="max-w-screen-xl mx-auto flex flex-col py-5 desktop:flex-row">
       <div className=" w-full desktop:w-3/12">
         <AccountMenu />
       </div>
       <div className="mt-5 w-full pl-5 desktop:w-9/12">
-        <div>test {isLoggedIn ? "true" : "false"}</div>
+        <button onClick={signOut}>Sign Out</button>
+        {user && <div>Hi, {firstName}!</div>}
         <div className="">{components[currentComponent]}</div>
       </div>
     </div>

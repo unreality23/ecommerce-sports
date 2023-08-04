@@ -11,10 +11,7 @@ const SignInPage = () => {
   //   authContext.signIn(username, password);
   // };
 
-  return (
-    <>
-    </>
-  );
+  return <></>;
 };
 
 export default SignInPage;

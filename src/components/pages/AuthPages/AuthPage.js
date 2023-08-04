@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthContext"; // Adjust the import path according to your project structure
 
-const SignInPage = () => {
-
+const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const authContext = useContext(AuthContext);
+  const { signIn, signUp, user } = useContext(AuthContext);
 
   //sign up data
   const [formData, setFormData] = useState({
@@ -22,7 +21,10 @@ const SignInPage = () => {
 
   const handleLogInSubmit = (event) => {
     event.preventDefault();
-    authContext.signIn(email, password);
+    console.log(`Email: ${email}, Password: ${password}`);
+    signIn(email, password)
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
   };
 
   const handleRegistrationInputChange = (e) => {
@@ -43,7 +45,15 @@ const SignInPage = () => {
     //   console.error("Invalid phone number format");
     //   return;
     // }
-    authContext.signUp(formData.name, formData.password, formData.email, formData.gender, formData.dob, formData.phoneNumber, formData.address)
+    signUp(
+      formData.name,
+      formData.password,
+      formData.email,
+      formData.gender,
+      formData.dob,
+      formData.phoneNumber,
+      formData.address,
+    )
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
 
@@ -53,14 +63,15 @@ const SignInPage = () => {
   };
 
   return (
-    <div className='flex flex-col desktop:flex-row'>
-      <div className='sign-in w-full desktop:w-3/6'>
+    <div className="flex flex-col desktop:flex-row">
+      <div className="sign-in w-full desktop:w-3/6">
+        test {JSON.stringify(user)}
         <h1>If you part of us already, Sign In here</h1>
         <form onSubmit={handleLogInSubmit} className="flex flex-col">
           <label>
             Email:
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -76,13 +87,13 @@ const SignInPage = () => {
           <input type="submit" value="Log in" />
         </form>
       </div>
-      <div className='sign-up border flex w-full desktop:w-3/6'>
+      <div className="sign-up flex w-full border desktop:w-3/6">
         <h1>Haven't Sign Up with us yet? Sign up Now!</h1>
         <form onSubmit={handleRegistrationSubmit} className="flex flex-col">
           <label>
             Email:
             <input
-              type="text"
+              type="email"
               name="email"
               value={formData.email}
               onChange={handleRegistrationInputChange}
@@ -147,10 +158,8 @@ const SignInPage = () => {
           <input type="submit" value="Sign Up" />
         </form>
       </div>
-
     </div>
-
   );
 };
 
-export default SignInPage;
+export default AuthPage;
