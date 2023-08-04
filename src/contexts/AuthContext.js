@@ -7,10 +7,7 @@ import {
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
 
-const poolData = {
-  UserPoolId: "",
-  ClientId: "",
-};
+const poolData = require('../data/poolData');
 
 const userPool = new CognitoUserPool(poolData);
 
