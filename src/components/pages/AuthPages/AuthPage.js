@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../../contexts/AuthContext"; // Adjust the import path according to your project structure
+import { AuthContext } from "../../../contexts/AuthContext";
+import TextField from "../../atoms/TextField/TextField";
+import SelectField from "../../atoms/SelectField/SelectField"; // Adjust the import path according to your project structure
 
 const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signIn, signUp, user } = useContext(AuthContext);
-
+  const [signInError, setSignInError] = useState("");
   //sign up data
   const [formData, setFormData] = useState({
     name: "",
@@ -21,10 +23,18 @@ const AuthPage = () => {
 
   const handleLogInSubmit = (event) => {
     event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
     signIn(email, password)
       .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.code === "UserNotConfirmedException") {
+          const message =
+            error.message +
+            " Please check your email for confirmation, and try again.";
+          setSignInError(message);
+        } else {
+          setSignInError(error.message);
+        }
+      });
   };
 
   const handleRegistrationInputChange = (e) => {
@@ -37,14 +47,14 @@ const AuthPage = () => {
   const handleRegistrationSubmit = (event) => {
     event.preventDefault();
     const phoneNumberPattern = new RegExp(/^\+44[7][0-9]{9}$/);
-    // if (!phoneNumberPattern.test(formData.phoneNumber)) {
-    //   setErrorMessage((prevErrorMessage) => {
-    //     prevErrorMessage = "Invalid phone number format";
-    //     return prevErrorMessage;
-    //   });
-    //   console.error("Invalid phone number format");
-    //   return;
-    // }
+    if (!phoneNumberPattern.test(formData.phoneNumber)) {
+      setErrorMessage((prevErrorMessage) => {
+        prevErrorMessage = "Invalid phone number format";
+        return prevErrorMessage;
+      });
+      console.error("Invalid phone number format");
+      return;
+    }
     signUp(
       formData.name,
       formData.password,
@@ -56,107 +66,100 @@ const AuthPage = () => {
     )
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
-
-    // authContext.signUp("Test", "Galilejus26@", "tes111t@example.com", "Male", "01-01-2000", "+447455910384", "Test Address")
-    //   .then((data) => console.log(data))
-    //   .catch((err) => console.error(err));
   };
 
   return (
-    <div className="flex flex-col desktop:flex-row">
-      <div className="sign-in w-full desktop:w-3/6">
-        test {JSON.stringify(user)}
-        <h1>If you part of us already, Sign In here</h1>
-        <form onSubmit={handleLogInSubmit} className="flex flex-col">
-          <label>
-            Email:
-            <input
+    <div className="flex flex-col desktop:flex-row my-10">
+      <div className="sign-in w-full desktop:w-3/6 flex justify-center items-center h-height">
+        <div className='mx-auto w-3/6'>
+          <h1 className="font-bold text-xl my-7">If you part of us already, Sign In here</h1>
+          {signInError && <p className="text-red">{signInError}</p>}
+          <form onSubmit={handleLogInSubmit} className="flex flex-col">
+            <TextField
+              name="email"
+              label="Email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              updateValue={(e) => setEmail(e.target.value)}
+              isItImportant="true"
             />
-          </label>
-          <label>
-            Password:
-            <input
+            <TextField
+              name="password"
+              label="Password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              updateValue={(e) => setPassword(e.target.value)}
+              isItImportant="true"
             />
-          </label>
-          <input type="submit" value="Log in" />
-        </form>
+            <TextField type="submit" value="Sign In" isButton="true" />
+          </form>
+        </div>
+
       </div>
-      <div className="sign-up flex w-full border desktop:w-3/6">
-        <h1>Haven't Sign Up with us yet? Sign up Now!</h1>
-        <form onSubmit={handleRegistrationSubmit} className="flex flex-col">
-          <label>
-            Email:
-            <input
-              type="email"
+      <div className="sign-up w-full desktop:w-3/6">
+        <div className='mx-auto w-3/6'>
+          <h1 className="font-bold text-xl my-7">Haven't Sign Up with us yet? Sign up Now!</h1>
+          <form onSubmit={handleRegistrationSubmit} className="flex flex-col">
+            <TextField
               name="email"
+              label="Email"
+              type="email"
               value={formData.email}
-              onChange={handleRegistrationInputChange}
+              updateValue={handleRegistrationInputChange}
+              isItImportant="true"
             />
-          </label>
-          <label>
-            Full name:
-            <input
-              type="text"
+            <TextField
               name="name"
+              label="Full Name"
               value={formData.name}
-              onChange={handleRegistrationInputChange}
+              updateValue={handleRegistrationInputChange}
+              isItImportant="true"
             />
-          </label>
-          <label>
-            Password:
-            <input
-              type="password"
+            <TextField
               name="password"
+              label="Password"
+              type="password"
               value={formData.password}
-              onChange={handleRegistrationInputChange}
+              updateValue={handleRegistrationInputChange}
+              isItImportant="true"
             />
-          </label>
-          <label>
-            Gender:
-            <input
-              type="text"
+            <SelectField
               name="gender"
+              label="Gender"
               value={formData.gender}
-              onChange={handleRegistrationInputChange}
+              updateValue={handleRegistrationInputChange}
+              isItImportant="true"
+              options={[
+                { value: "male", text: "Male" },
+                { value: "female", text: "Female" },
+                { value: "other", text: "Other" },
+              ]}
             />
-          </label>
-          <label>
-            Date of Birth:
-            <input
-              type="date"
-              name="dob"
-              value={formData.dob}
-              onChange={handleRegistrationInputChange}
-            />
-          </label>
-          <label>
-            Mobile Number:
-            <input
-              type="text"
-              pattern="^\+44[7][0-9]{9}$"
+            <TextField
               name="phoneNumber"
+              label="Mobile Number"
               value={formData.phoneNumber}
-              onChange={handleRegistrationInputChange}
+              updateValue={handleRegistrationInputChange}
+              isItImportant="true"
             />
-            {/*{errorMessage && <div className="px-5"> {errorMessage}</div> }*/}
-          </label>
-          <label>
-            Address:
-            <input
-              type="text"
-              value={formData.address}
+            <TextField
               name="address"
-              onChange={handleRegistrationInputChange}
+              label="Address"
+              value={formData.address}
+              updateValue={handleRegistrationInputChange}
+              isItImportant="true"
             />
-          </label>
-          <input type="submit" value="Sign Up" />
-        </form>
+            <TextField
+              name="dob"
+              label="Date of Birth"
+              type="date"
+              value={formData.dob}
+              updateValue={handleRegistrationInputChange}
+              isItImportant="true"
+            />
+            <TextField type="submit" value="Sign Up" isButton="true" />
+          </form>
+        </div>
       </div>
     </div>
   );

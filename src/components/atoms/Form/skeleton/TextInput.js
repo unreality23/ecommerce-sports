@@ -20,7 +20,7 @@ const TextInput = ({
         value={modelValue}
         onChange={(e) => updateModelValue(e.target.value)}
         placeholder={capitalizeFirstLetter}
-        className="form-control border-gray-400 hover:border-green-400 focus:border-green-400 active:border-green-400 h-10 w-full border
+        className="form-control border-gray-nurse hover:border-green-400 focus:border-green-400 active:border-green-400 h-10 w-full border
         pl-2 transition-all"
         name={name}
       />

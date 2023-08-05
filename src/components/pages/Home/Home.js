@@ -7,6 +7,7 @@ import FormGroup from "../../atoms/Form/skeleton/FormGroup";
 import RadioInput from "../../atoms/Form/skeleton/RadioInput";
 import SelectInput from "../../atoms/Form/skeleton/SelectInput";
 import TextInput from "../../atoms/Form/skeleton/TextInput";
+import TextField from '../../atoms/TextField/TextField';
 const Home = () => {
   const slides = [
     {
@@ -39,7 +40,7 @@ const Home = () => {
       </CenteredContainer>
       <FormGroup>
         <RadioInput />
-        <TextInput label="forename" name="forename" />
+        <TextField label="forename" name="forename" isItImportant="true" />
       </FormGroup>
     </div>
   );

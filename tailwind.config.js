@@ -15,6 +15,7 @@ module.exports = {
       white: "#fff",
       black: "#000",
       "timber-green": "#142f26",
+      "timber-green-light": "#193e32",
       instagram: "#8a3ab9",
       facebook: "#3b5998",
       twitter: "#00acee",

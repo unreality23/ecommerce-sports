@@ -46,12 +46,10 @@ const AuthProvider = ({ children }) => {
 
           // Assuming result.getIdToken().payload contains the user details
           const userDetails = result.getIdToken().payload;
-          console.log("User Details: ", userDetails);
           setUser({ email, accessToken, ...userDetails });
           setIsLoggedIn(true);
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("username", email);
-          console.log(isLoggedIn);
           resolve(result); // Resolve the promise with the result
         },
         onFailure: function (err) {
@@ -88,12 +86,8 @@ const AuthProvider = ({ children }) => {
           reject(err);
           return;
         } else if (result) {
-          const cognitoUser = result.user;
-          console.log("user name is " + cognitoUser.getUsername());
+          alert("Your Account Was Created succesfully, please confirm your email to sign in")
           resolve(result);
-          setIsLoggedIn(true);
-          localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("username", email);
         }
       });
     });
@@ -106,7 +100,6 @@ const AuthProvider = ({ children }) => {
       const userData = { Username: localEmail, Pool: userPool };
       const cognitoUser = new CognitoUser(userData);
 
-      console.log("cognitoUser: " + JSON.stringify(cognitoUser.getUsername()));
       cognitoUser.getSession((err, session) => {
         if (err) {
           console.error(err);

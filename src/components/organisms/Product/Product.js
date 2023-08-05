@@ -26,7 +26,7 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
 
     docClient.scan(params, function (err, data) {
       if (err) {
-        console.log("Error", err);
+        console.error("Error", err);
       } else {
         setProducts(data.Items);
         setSortedProducts(data.Items);

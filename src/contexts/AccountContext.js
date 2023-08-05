@@ -20,11 +20,7 @@ const AccountProvider = ({ children }) => {
 
   const changeStep = (step) => {
     if (components.hasOwnProperty(step)) {
-      console.log(currentComponent);
       setCurrentComponent(step);
-      console.log(currentComponent);
-    } else {
-      console.log("false: " + step);
     }
   };
 
