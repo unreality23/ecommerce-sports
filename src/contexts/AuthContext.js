@@ -7,7 +7,7 @@ import {
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
 
-const poolData = require('../data/poolData');
+const poolData = require("../data/poolData");
 
 const userPool = new CognitoUserPool(poolData);
 
@@ -82,11 +82,12 @@ const AuthProvider = ({ children }) => {
 
       userPool.signUp(email, password, attributeList, null, (err, result) => {
         if (err) {
-          alert(err.message || JSON.stringify(err));
           reject(err);
           return;
         } else if (result) {
-          alert("Your Account Was Created succesfully, please confirm your email to sign in")
+          alert(
+            "Your Account Was Created succesfully, please confirm your email to sign in",
+          );
           resolve(result);
         }
       });

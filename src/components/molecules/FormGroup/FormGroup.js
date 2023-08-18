@@ -3,11 +3,11 @@ import { CSSTransition } from "react-transition-group";
 
 const FormGroup = ({ children }) => {
   // Create a ref for CSSTransition
-  const csstransitionRef = useRef(null);
+  const cssTransitionRef = useRef(null);
 
   return (
     <CSSTransition
-      nodeRef={csstransitionRef}
+      nodeRef={cssTransitionRef}
       in={true}
       appear={true}
       timeout={500}
@@ -15,7 +15,7 @@ const FormGroup = ({ children }) => {
     >
       <div
         className="form-group pt-3 transition-all duration-500 ease-in-out"
-        ref={csstransitionRef}
+        ref={cssTransitionRef}
       >
         {children}
       </div>
