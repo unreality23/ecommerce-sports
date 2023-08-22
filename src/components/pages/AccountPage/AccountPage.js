@@ -4,7 +4,7 @@ import { AccountContext } from "../../../contexts/AccountContext";
 import { AuthContext } from "../../../contexts/AuthContext";
 const AccountPage = () => {
   const { components, currentComponent } = useContext(AccountContext);
-  const { isLoggedIn, user, signOut } = useContext(AuthContext);
+  const { isLoggedIn, user, signOut, getUserId } = useContext(AuthContext);
   const [firstName, setFirstName] = useState("");
   // let AWS = require('../../../data/aws-config');
   // let docClient = new AWS.DynamoDB.DocumentClient();
@@ -148,6 +148,7 @@ const AccountPage = () => {
       <div className="mt-5 w-full pl-5 desktop:w-9/12">
         <button onClick={signOut}>Sign Out</button>
         {user && <div>Hi, {firstName}!</div>}
+        <div> Your User Id is "{user.sub}"</div>
         <div className="">{components[currentComponent]}</div>
       </div>
     </div>

@@ -17,6 +17,7 @@ import AccountPage from "./components/pages/AccountPage/AccountPage";
 import { AccountProvider } from "./contexts/AccountContext";
 import { AuthContext } from "./contexts/AuthContext";
 import AuthPage from "./components/pages/AuthPages/AuthPage";
+import { WishlistProvider } from './contexts/WishlistContext';
 const App = () => {
   const { isLoggedIn } = useContext(AuthContext);
   const [unmounted, setUnmounted] = useState(false);
@@ -59,7 +60,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products" element={<WishlistProvider><ProductsPage /></WishlistProvider>} />
           <Route path="/categories" element={<CategoryPage />} />
           <Route
             path="/auth"
@@ -73,9 +74,11 @@ const App = () => {
             path="/account"
             element={
               <ProtectedRoute isLoggedInStatus={isLoggedIn}>
-                <AccountProvider>
-                  <AccountPage />
-                </AccountProvider>
+                <WishlistProvider>
+                  <AccountProvider>
+                    <AccountPage />
+                  </AccountProvider>
+                </WishlistProvider>
               </ProtectedRoute>
             }
           />

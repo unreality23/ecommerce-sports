@@ -118,6 +118,8 @@ const AuthProvider = ({ children }) => {
             return acc;
           }, {});
 
+          console.log('userDetails:', userDetails.sub);
+
           setUser({ email: localEmail, ...userDetails });
           setIsLoggedIn(true);
         });
@@ -154,6 +156,8 @@ const AuthProvider = ({ children }) => {
       `CognitoIdentityServiceProvider.${poolData.ClientId}.LastAuthUser`,
     );
   };
+
+
 
   return (
     <AuthContext.Provider value={{ user, signIn, signUp, signOut, isLoggedIn }}>

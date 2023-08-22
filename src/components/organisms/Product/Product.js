@@ -3,6 +3,8 @@ import axios from "axios";
 import Button from "../../atoms/Button/Button";
 import Pagination from "../../molecules/Pagination/Pagination";
 import { CartContext } from "../../../contexts/CartContext";
+import { WishlistContext } from '../../../contexts/WishlistContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 const Product = ({ viewProductsPerPage, showProductList, listType }) => {
   const productsPerPage = viewProductsPerPage;
@@ -10,6 +12,8 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
   const maxPaginationButtonsToShow = 5;
 
   const { addToCart } = useContext(CartContext);
+  const { AddToWishlist } = useContext(WishlistContext);
+  const { user } = useContext(AuthContext);
 
   const [sortingOption, setSortingOption] = useState("lowest"); // Default sorting option is 'lowest'
 
@@ -98,6 +102,10 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
   const handleClick = (product) => {
     addToCart(product);
   };
+
+  const handleWishlist = (product) => {
+    AddToWishlist(product);
+  }
 
   return (
     <div className="flex flex-col">
@@ -195,6 +203,11 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
                   text="Add To Cart"
                   buttonClassName="main-button w-full py-3"
                   onClick={() => handleClick(product)}
+                />
+                <Button
+                  text="Add To WishlistStructure"
+                  buttonClassName="main-button w-full py-3"
+                  onClick={() => handleWishlist(product)}
                 />
               </div>
             )}
