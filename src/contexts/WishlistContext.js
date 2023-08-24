@@ -1,9 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { AuthContext } from './AuthContext';
-import AWS from '../data/aws-config';
-import uuid from 'uuid';
-
-
+import Product from "../components/organisms/Product/Product";
 
 const WishlistContext = createContext();
 
@@ -57,6 +54,23 @@ const WishlistProvider = ({ children }) => {
     }
   }
 
+  const fetchAllProducts = async () => {
+    let docClient = new AWS.DynamoDB.DocumentClient();
+    let params = {
+      TableName: "Products",
+    };
+
+    return new Promise((resolve, reject) => {
+      docClient.scan(params, (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(data.Items);
+        }
+      });
+    });
+  };
+
   const getWishlistItems = async (userId) => {
     try {
       const params = {
@@ -67,11 +81,19 @@ const WishlistProvider = ({ children }) => {
         }
       };
 
-      const result = await docClient.scan(params).promise();
-      const items = result.Items;
 
-      console.log("Items retrieved from wishlist:", items);
-      return items;
+      const result = await docClient.scan(params).promise();
+      const wishlistItems  = result.Items;
+
+      const allProducts = await fetchAllProducts();
+
+
+      const productInWishList = wishlistItems.map(item => {
+            return allProducts.find(product => product.id === item.productId);
+      });
+
+      console.log("Items retrieved from wishlist:", productInWishList);
+      return productInWishList;
     } catch (error) {
       console.error("Error retrieving wishlist items:", error);
       return [];
@@ -104,6 +126,7 @@ const WishlistProvider = ({ children }) => {
         getWishlistItems,
         removeFromWishlist,
         productQuantity,
+        wishlist
       }}
     >
       {children}

@@ -38,7 +38,7 @@ export const validateField = (field, formData) => {
     field === "dob" &&
     validationRules[field].validate &&
     !validationRules[field].validate(formData[field]) &&
-    formData[field].trim() != ""
+    formData[field].trim() !== ""
   ) {
     console.log("test: " + validationRules["dob"].validate);
     newErrors[field] = "You must be at least 18.";
@@ -48,7 +48,7 @@ export const validateField = (field, formData) => {
     field === "password" &&
     validationRules[field].pattern &&
     !validationRules[field].pattern.test(formData[field]) &&
-    formData[field].trim() != ""
+    formData[field].trim() !== ""
   ) {
     newErrors.password =
       "Password must contain at least 1 number, 1 special character, 1 uppercase letter, and 1 lowercase letter.";
@@ -58,7 +58,7 @@ export const validateField = (field, formData) => {
     field === "email" &&
     validationRules[field].pattern &&
     !validationRules[field].pattern.test(formData[field]) &&
-    formData[field].trim() != ""
+    formData[field].trim() !== ""
   ) {
     newErrors.email =
       "Email is not valid. Should be similar to 'company@example.com'.";
@@ -68,7 +68,7 @@ export const validateField = (field, formData) => {
     field === "phoneNumber" &&
     validationRules[field].pattern &&
     !validationRules[field].pattern.test(formData[field]) &&
-    formData[field].trim() != ""
+    formData[field].trim() !== ""
   ) {
     newErrors.phoneNumber =
       "Phone number is invalid it must be Uk number for example: +447455910384";
@@ -77,7 +77,7 @@ export const validateField = (field, formData) => {
   if (
     field === "confirmPassword" &&
     formData.confirmPassword !== formData.password &&
-    formData[field].trim() != ""
+    formData[field].trim() !== ""
   ) {
     newErrors.confirmPassword = "Passwords do not match";
   }

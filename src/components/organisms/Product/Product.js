@@ -6,7 +6,7 @@ import { CartContext } from "../../../contexts/CartContext";
 import { WishlistContext } from '../../../contexts/WishlistContext';
 import { AuthContext } from '../../../contexts/AuthContext';
 
-const Product = ({ viewProductsPerPage, showProductList, listType }) => {
+const Product = ({ viewProductsPerPage, showProductList, listType, wishlistItems }) => {
   const productsPerPage = viewProductsPerPage;
   const [currentPage, setCurrentPage] = useState(1);
   const maxPaginationButtonsToShow = 5;
@@ -107,6 +107,13 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
     AddToWishlist(product);
   }
 
+  const getItemsToDisplay = () => {
+    if (wishlistItems) {
+      return wishlistItems;
+    }
+    return getCurrentProducts();
+  }
+
   return (
     <div className="flex flex-col">
       {showProductList && (
@@ -132,7 +139,7 @@ const Product = ({ viewProductsPerPage, showProductList, listType }) => {
         </div>
       )}
       <div className="mb-5 grid grid-cols-2 gap-6 desktop:grid-cols-4">
-        {getCurrentProducts().map((product) => (
+        {getItemsToDisplay().map((product) => (
           <div
             className="product group flex flex-grow flex-col"
             key={product.id}

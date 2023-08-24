@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { AccountContext } from "../../../../contexts/AccountContext";
-
+import { splitCamelCase } from '../../../../utils/utils';
 const AccountMenu = () => {
   const { components, changeStep } = useContext(AccountContext);
+
 
   return (
     <ul className="flex flex-col px-5">
@@ -12,7 +13,7 @@ const AccountMenu = () => {
           key={key}
           onClick={() => changeStep(key)}
         >
-          {components[key]}
+          {splitCamelCase(key)}
         </li>
       ))}
     </ul>
